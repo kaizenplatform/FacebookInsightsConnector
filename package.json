@@ -1,5 +1,5 @@
 {
-  "name": "FacebookInsightsConnector",
+  "name": "FbInsightsWebDataConnector",
   "version": "0.0.1",
   "description": "Tableau Web Data Connector for Facebook Insights",
   "main": "index.js",
