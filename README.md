@@ -1,7 +1,8 @@
 # FbInsightsWebDataConnector
 
-The [Web Data Connector](https://tableau.github.io/webdataconnector/) for Facebook Insights.
+[![Build Status][build-image]][build-link]
 
+The [Web Data Connector](https://tableau.github.io/webdataconnector/) for Facebook Insights.
 
 ## Install
 
@@ -62,4 +63,8 @@ npm run test
 ## Copyright
 
 Copyright (c) 2017 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
+
+
+[build-image]: https://circleci.com/gh/kaizenplatform/FbInsightsWebDataConnector.svg?style=svg
+[build-link]:  https://circleci.com/gh/kaizenplatform/FbInsightsWebDataConnector
 
