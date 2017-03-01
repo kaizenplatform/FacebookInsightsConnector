@@ -11,5 +11,5 @@ deployment:
   edge:
     branch: master
     commands:
-      - 'npm run publish':
+      - 'npm run deploy':
           timeout: 600

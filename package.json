@@ -6,6 +6,7 @@
   "scripts": {
     "build": "gulp compile",
     "lint": "gulp eslint",
+    "deploy": "gulp deploy",
     "start": "webpack-dev-server"
   },
   "author": "dtaniwaki",
