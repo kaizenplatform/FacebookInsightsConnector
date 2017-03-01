@@ -1,5 +1,8 @@
 # FbInsightsWebDataConnector
 
+The [Web Data Connector](https://tableau.github.io/webdataconnector/) for Facebook Insights.
+
+
 ## Install
 
 ```bash
@@ -9,8 +12,22 @@ npm install
 ## Development
 
 ```bash
-npm start
+PORT=8080 npm start
 ```
+
+### Simulator
+
+Tableau provides the simulator before trying plugins in Tableau Desktop.
+
+```bash
+git clone https://github.com/tableau/webdataconnector.git
+cd webdataconnector
+npm install --production
+npm start
+open http://localhost:8888/Simulator/index.html
+```
+
+Set `http://localhost:8080/` at WDC URL of the UI.
 
 ## Production
 
