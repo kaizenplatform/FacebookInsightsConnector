@@ -1,0 +1,15 @@
+machine:
+  timezone: UTC
+  node:
+    version: 6.1.0
+database:
+  override:
+test:
+  override:
+    - 'npm run test'
+deployment:
+  edge:
+    branch: master
+    commands:
+      - 'npm run publish':
+          timeout: 600
