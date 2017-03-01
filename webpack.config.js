@@ -14,7 +14,8 @@ module.exports = {
     filename: "[name]",
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'src')
+    contentBase: path.resolve(__dirname, 'src'),
+    port: process.env.PORT,
   },
   devtool: "source-map",
   module: {
