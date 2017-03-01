@@ -17,7 +17,7 @@ PORT=8080 npm start
 
 ### Simulator
 
-Tableau provides the simulator before trying plugins in Tableau Desktop.
+Tableau provides the [simulator](https://github.com/tableau/webdataconnector) before trying plugins in Tableau Desktop.
 
 ```bash
 git clone https://github.com/tableau/webdataconnector.git
