@@ -1,8 +1,8 @@
 const tableau = window.tableau;
 
 export default [
-  { id : "date_start", alias : "Date Start", dataType : tableau.dataTypeEnum.datetime },
-  { id : "date_stop", alias : "Date Stop", dataType : tableau.dataTypeEnum.datetime },
+  { id : "date_start", alias : "Date Start", dataType : tableau.dataTypeEnum.date },
+  { id : "date_stop", alias : "Date Stop", dataType : tableau.dataTypeEnum.date },
   { id : "impressions", alias : "Impressions", dataType : tableau.dataTypeEnum.int },
   { id : "clicks", alias : "Clicks", dataType : tableau.dataTypeEnum.int },
   { id : "ctr", alias : "CTR", dataType : tableau.dataTypeEnum.float },
