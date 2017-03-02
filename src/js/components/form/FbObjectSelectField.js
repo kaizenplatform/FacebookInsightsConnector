@@ -3,15 +3,28 @@ import FbObjectSelect from './FbObjectSelect';
 
 class FbObjectSelectField extends Component {
   render() {
-    const { input: { value, onBlur, onChange }, ...rest } = this.props;
+    const { input: { value, name, onBlur, onChange }, meta: { touched, error }, ...rest } = this.props;
+    let className;
+    if (touched && error) {
+      className = "has-error"
+    }
 
     return (
-      <FbObjectSelect
-        value={value}
-        onBlur={() => onBlur(value)}
-        onChange={(x) => onChange(x.id)}
-        {...rest}
-      />
+      <div className={className}>
+        <label htmlFor="adaccountId" className="col-md-2 control-label">AdAccount</label>
+        <div className="col-md-10">
+          <div>
+            <FbObjectSelect
+              value={value}
+              name={name}
+              onBlur={() => onBlur(value)}
+              onChange={(x) => onChange(x.id)}
+              {...rest}
+            />
+          </div>
+          <div className="help-block">{touched && error}</div>
+        </div>
+      </div>
     );
   }
 }

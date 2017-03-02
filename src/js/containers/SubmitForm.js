@@ -8,6 +8,17 @@ import { fetchAdaccounts, selectAdaccount } from '../actions';
 
 const tableau = window.tableau;
 
+const validate = ({ adaccountId, level }) => {
+  const errors = {};
+  if (!adaccountId) {
+    errors.adaccountId = 'Required'
+  }
+  if (!level) {
+    errors.level = 'Required'
+  }
+  return errors;
+}
+
 class SubmitForm extends Component {
   static propTypes = {
     adaccounts: React.PropTypes.object.isRequired
@@ -26,9 +37,6 @@ class SubmitForm extends Component {
     const { fbStatus } = this.props;
     const { adaccountId, level } = data;
 
-    if (!adaccountId) { return }
-    if (!level) { return }
-
     let connectionData = {
       level: level,
       path: "v2.8/" + adaccountId + "/insights",
@@ -46,31 +54,26 @@ class SubmitForm extends Component {
 
   render() {
     const { handleSubmit, adaccounts, pristine, submitting } = this.props;
+    console.log(this.props)
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit(this.handleSubmit)}>
         <div className="form-group">
-          <label htmlFor="ad_account" className="col-md-2 control-label">AdAccount</label>
-          <div className="col-md-10">
-            <Field
-              name="adaccountId"
-              component={FbObjectSelectField}
-              options={adaccounts.all}
-              isLoading={adaccounts.isFetching}
-              disabled={adaccounts.isFetching || submitting}
-              clearable={false}
-            />
-          </div>
+          <Field
+            name="adaccountId"
+            component={FbObjectSelectField}
+            options={adaccounts.all}
+            isLoading={adaccounts.isFetching}
+            disabled={adaccounts.isFetching || submitting}
+            clearable={false}
+          />
         </div>
         <div className="form-group">
-          <label htmlFor="level" className="col-md-2 control-label">Level</label>
-          <div className="col-md-10">
-            <Field
-              name="level"
-              component={LevelButtonsField}
-              disabled={submitting}
-            />
-          </div>
+          <Field
+            name="level"
+            component={LevelButtonsField}
+            disabled={submitting}
+          />
         </div>
         <button type="submit" className="btn btn-success">
           Get Facebook Insights Data!
@@ -82,6 +85,7 @@ class SubmitForm extends Component {
 
 SubmitForm = reduxForm({
   form: 'SubmitForm',
+  validate
 })(SubmitForm)
 
 function mapStateToProps(state) {
