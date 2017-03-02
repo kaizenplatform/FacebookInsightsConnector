@@ -11,54 +11,24 @@ const itemRenderer = (item) => {
 };
 
 class AdaccountsList extends Component {
-  constructor() {
-    super();
-    this.reloadAdaccounts = this.reloadAdaccounts.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.onFetchAdaccounts();
-  }
-
-  reloadAdaccounts(e) {
-    e.preventDefault();
-    this.props.onFetchAdaccounts();
-  }
-
   render() {
-    const { adaccounts } = this.props;
-    let reloadButtonClass = "btn btn-default";
-    if (adaccounts.isFetching) {
-      reloadButtonClass += " disabled";
-    }
+    const { input: { value, onBlur, onChange }, ...rest } = this.props;
 
     return (
-      <div className="row">
-        <div className="col-md-11">
-          <Select
-            name="adaccounts"
-            value={adaccounts.selected}
-            options={adaccounts.all}
-            onChange={e => this.props.onChange(e.id)}
-            optionRenderer={itemRenderer}
-            valueRenderer={itemRenderer}
-            labelKey="name"
-            valueKey="id"
-            clearable={false}
-            isLoading={adaccounts.isFetching}
-            disabled={adaccounts.isFetching}
-            menuContainerStyle={{'zIndex': 999}}
-          />
-        </div>
-        <div className="col-md-1">
-          <button className={reloadButtonClass} onClick={this.reloadAdaccounts}>
-            <span className="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
+      <Select
+        optionRenderer={itemRenderer}
+        valueRenderer={itemRenderer}
+        labelKey="name"
+        valueKey="id"
+        clearable={false}
+        menuContainerStyle={{'zIndex': 999}}
+        value={value}
+        onBlur={() => onBlur(value)}
+        onChange={(x) => onChange(x.id)}
+        {...rest}
+      />
     );
   }
 }
 
 export default AdaccountsList;
-

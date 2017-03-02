@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 
-const InsightsLevel = (props) => {
-  return (
-    <ButtonGroup justified class>
-      <Button href="#" onClick={() => props.onChange("campaign")}>Campaign</Button>
-      <Button href="#" onClick={() => props.onChange("adset")}>Adset</Button>
-      <Button href="#" onClick={() => props.onChange("ad")}>Ad</Button>
-    </ButtonGroup>
-  );
+class InsightsLevel extends Component {
+  constructor() {
+    super();
+    this.renderButton = this.renderButton.bind(this);
+
+  }
+  renderButton(key, text) {
+    const { input } = this.props;
+    return (
+      <Button
+        href="#"
+        active={input.value == key}
+        onClick={() => input.onChange(key)}>
+        {text}
+      </Button>
+    );
+  }
+
+  render() {
+    const { disabled, input: { value, onChange } } = this.props;
+    return (
+      <ButtonGroup justified disabled={disabled}>
+        {this.renderButton("campaign", "Campaign")}
+        {this.renderButton("adset", "Adset")}
+        {this.renderButton("ad", "Ad")}
+      </ButtonGroup>
+    );
+  }
 };
 
 export default InsightsLevel;
-

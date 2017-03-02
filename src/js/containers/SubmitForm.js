@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 import AdaccountsList from '../components/AdaccountsList';
 import InsightsLevel from '../components/InsightsLevel';
 import schema from '../schema';
@@ -14,22 +15,23 @@ class SubmitForm extends Component {
 
   constructor() {
     super();
-    this.handleClickSubmit = this.handleClickSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { level: null };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClickSubmit(e) {
-    e.preventDefault();
-    const { adaccounts: { selected }, fbStatus } = this.props;
-    const level = this.state.level;
+  componentDidMount() {
+    this.props.fetchAdaccounts();
+  }
 
-    if (!selected) { return }
+  handleSubmit(data) {
+    const { fbStatus } = this.props;
+    const { adaccountId, level } = data;
+
+    if (!adaccountId) { return }
     if (!level) { return }
 
     let connectionData = {
       level: level,
-      path: "v2.8/" + selected + "/insights",
+      path: "v2.8/" + adaccountId + "/insights",
       date_preset: 'lifetime',
       time_increment: 1,
       fields: schema[level].columns.map(x => x.id),
@@ -42,32 +44,44 @@ class SubmitForm extends Component {
     tableau.submit();
   }
 
-  handleChange(level) {
-    this.setState({ level });
-  }
-
   render() {
+    const { handleSubmit, adaccounts, pristine, submitting } = this.props;
+
     return (
-      <form className="form-horizontal">
+      <form className="form-horizontal" onSubmit={handleSubmit(this.handleSubmit)}>
         <div className="form-group">
           <label htmlFor="ad_account" className="col-md-2 control-label">AdAccount</label>
           <div className="col-md-10">
-            <AdaccountsList adaccounts={this.props.adaccounts} onFetchAdaccounts={this.props.fetchAdaccounts} onChange={this.props.selectAdaccount} />
+            <Field
+              name="adaccountId"
+              component={AdaccountsList}
+              options={adaccounts.all}
+              isLoading={adaccounts.isFetching}
+              disabled={adaccounts.isFetching || submitting}
+            />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="level" className="col-md-2 control-label">Level</label>
           <div className="col-md-10">
-            <InsightsLevel onChange={this.handleChange} value={this.state.level} />
+            <Field
+              name="level"
+              component={InsightsLevel}
+              disabled={submitting}
+            />
           </div>
         </div>
-        <button type="submit" className="btn btn-success" style={{margin: '10px'}} onClick={this.handleClickSubmit}>
+        <button type="submit" className="btn btn-success">
           Get Facebook Insights Data!
         </button>
       </form>
     );
   }
 };
+
+SubmitForm = reduxForm({
+  form: 'SubmitForm',
+})(SubmitForm)
 
 function mapStateToProps(state) {
   return {
@@ -76,4 +90,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchAdaccounts, selectAdaccount })(SubmitForm);
+export default connect(mapStateToProps, { fetchAdaccounts })(SubmitForm);
