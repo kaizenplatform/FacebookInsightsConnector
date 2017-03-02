@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Form, Text } from 'react-form';
 import { connect } from 'react-redux';
 import AdaccountsList from '../components/AdaccountsList';
 import InsightsLevel from '../components/InsightsLevel';
