@@ -47,6 +47,7 @@ class AdaccountsList extends Component {
             clearable={false}
             isLoading={adaccounts.isFetching}
             disabled={adaccounts.isFetching}
+            menuContainerStyle={{'zIndex': 999}}
           />
         </div>
         <div className="col-md-1">
