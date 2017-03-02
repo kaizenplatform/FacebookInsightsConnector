@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 
-class InsightsLevel extends Component {
+class LevelButtons extends Component {
   constructor() {
     super();
     this.renderButton = this.renderButton.bind(this);
@@ -31,4 +31,4 @@ class InsightsLevel extends Component {
   }
 };
 
-export default InsightsLevel;
+export default LevelButtons;

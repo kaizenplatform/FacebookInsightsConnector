@@ -10,7 +10,7 @@ const itemRenderer = (item) => {
   );
 };
 
-class AdaccountsList extends Component {
+class FbObjectSelect extends Component {
   render() {
     const { input: { value, onBlur, onChange }, ...rest } = this.props;
 
@@ -31,4 +31,4 @@ class AdaccountsList extends Component {
   }
 }
 
-export default AdaccountsList;
+export default FbObjectSelect;
