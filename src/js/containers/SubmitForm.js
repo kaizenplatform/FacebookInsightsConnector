@@ -3,18 +3,22 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import FbObjectSelectField from '../components/form/FbObjectSelectField';
 import LevelButtonsField from '../components/form/LevelButtonsField';
+import DateRangeField from '../components/form/DateRangeField';
 import schema from '../schema';
 import { fetchAdaccounts, selectAdaccount } from '../actions';
 
 const tableau = window.tableau;
 
-const validate = ({ adaccountId, level }) => {
+const validate = ({ adaccountId, level, dateRange }) => {
   const errors = {};
   if (!adaccountId) {
     errors.adaccountId = 'Required'
   }
   if (!level) {
     errors.level = 'Required'
+  }
+  if (!dateRange || !dateRange.endDate || !dateRange.startDate) {
+    errors.dateRange = 'Required'
   }
   return errors;
 }
@@ -72,6 +76,14 @@ class SubmitForm extends Component {
             name="level"
             component={LevelButtonsField}
             disabled={submitting}
+          />
+        </div>
+        <div className="form-group">
+          <Field
+            name="dateRange"
+            component={DateRangeField}
+            disabled={submitting}
+            locale={{ format: 'YYYY/MM/DD' }}
           />
         </div>
         <button type="submit" className="btn btn-success">
