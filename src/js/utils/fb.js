@@ -43,16 +43,16 @@ const subscribeStatusChange = (cb) => {
 };
 
 const paginateConnection = (page, params, cb) => {
-  window.tableau.log('FB Page: ' + page);
   FB.api(page, 'get', params, (response) => {
     if (!response) {
+      console.error('FB API: Unknown error');
       throw new Error('FB API: Unknown error');
     } else if (response.error) {
-      window.tableau.log(response.error.message);
+      console.error('FB API: ' + response.error.message);
       throw new Error('FB API: ' + response.error.message);
     }
     let nextCb;
-    const nextPage = response.paging.next;
+    const nextPage = response.paging && response.paging.next;
     if (nextPage) {
       nextCb = () => { paginateConnection(nextPage, {}, cb) };
     }
@@ -65,4 +65,3 @@ const getAccessToken = () => {
 }
 
 export default { setup, getLogInUrl, getLogOutUrl, paginateConnection, subscribeStatusChange, getAccessToken };
-

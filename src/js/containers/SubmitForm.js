@@ -39,16 +39,21 @@ class SubmitForm extends Component {
 
   handleSubmit(data) {
     const { fbStatus } = this.props;
-    const { adaccountId, level } = data;
+    const { adaccountId, level, dateRange } = data;
 
     let connectionData = {
-      level: level,
       path: "v2.8/" + adaccountId + "/insights",
-      date_preset: 'lifetime',
-      time_increment: 1,
-      fields: schema[level].columns.map(x => x.id),
-      token: fbStatus.token,
       schema: schema[level],
+      params: {
+        level,
+        access_token: fbStatus.token,
+        fields: schema[level].columns.map(x => x.id).join(','),
+        time_increment: 1,
+        time_range: {
+          since: dateRange.startDate.format("YYYY-MM-DD"),
+          until: dateRange.endDate.format("YYYY-MM-DD")
+        },
+      },
     };
 
     tableau.connectionData = JSON.stringify(connectionData);

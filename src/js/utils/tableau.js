@@ -16,15 +16,13 @@ const setup = () => {
     let firstPage = connectionData.path
     window.tableau.log(connectionData);
 
-    fb.paginateConnection(firstPage, {
-      access_token: connectionData.token,
-      fields: connectionData.fields.join(","),
+    const params = Object.assign({
       date_format: 'U',
       limit: 100,
-      level: connectionData.level,
-      date_preset: 'lifetime',
-      time_increment: 1,
-    }, (data, next) => {
+    }, connectionData.params);
+
+    fb.paginateConnection(firstPage, params, (data, next) => {
+      window.tableau.log("FB Response: " + JSON.stringify(data));
       const tableData = [];
       for (let i = 0; i < data.length; i += 1) {
         tableData.push(data[i]);
@@ -43,4 +41,3 @@ const setup = () => {
 };
 
 export default { setup };
-
