@@ -54,7 +54,6 @@ class SubmitForm extends Component {
 
   render() {
     const { handleSubmit, adaccounts, pristine, submitting } = this.props;
-    console.log(this.props)
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit(this.handleSubmit)}>
@@ -62,7 +61,7 @@ class SubmitForm extends Component {
           <Field
             name="adaccountId"
             component={FbObjectSelectField}
-            options={adaccounts.all}
+            options={Object.values(adaccounts.all)}
             isLoading={adaccounts.isFetching}
             disabled={adaccounts.isFetching || submitting}
             clearable={false}
