@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import FbObjectSelect from '../components/form/FbObjectSelect';
-import LevelButtons from '../components/form/LevelButtons';
+import FbObjectSelectField from '../components/form/FbObjectSelectField';
+import LevelButtonsField from '../components/form/LevelButtonsField';
 import schema from '../schema';
 import { fetchAdaccounts, selectAdaccount } from '../actions';
 
@@ -54,10 +54,11 @@ class SubmitForm extends Component {
           <div className="col-md-10">
             <Field
               name="adaccountId"
-              component={FbObjectSelect}
+              component={FbObjectSelectField}
               options={adaccounts.all}
               isLoading={adaccounts.isFetching}
               disabled={adaccounts.isFetching || submitting}
+              clearable={false}
             />
           </div>
         </div>
@@ -66,7 +67,7 @@ class SubmitForm extends Component {
           <div className="col-md-10">
             <Field
               name="level"
-              component={LevelButtons}
+              component={LevelButtonsField}
               disabled={submitting}
             />
           </div>

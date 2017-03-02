@@ -5,22 +5,22 @@ class LevelButtons extends Component {
   constructor() {
     super();
     this.renderButton = this.renderButton.bind(this);
-
   }
+
   renderButton(key, text) {
-    const { input } = this.props;
+    const { value, onChange } = this.props;
     return (
       <Button
         href="#"
-        active={input.value == key}
-        onClick={() => input.onChange(key)}>
+        active={value == key}
+        onClick={() => onChange(key)}>
         {text}
       </Button>
     );
   }
 
   render() {
-    const { disabled, input: { value, onChange } } = this.props;
+    const { disabled } = this.props;
     return (
       <ButtonGroup justified disabled={disabled}>
         {this.renderButton("campaign", "Campaign")}
