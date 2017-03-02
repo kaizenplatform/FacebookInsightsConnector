@@ -7,6 +7,7 @@ import eslint from 'gulp-eslint';
 import webpack from 'webpack';
 import del from 'del';
 import awspublish from 'gulp-awspublish';
+import parallelize from 'concurrent-transform';
 
 gulp.task('lint', () => {
   return gulp.src(['src/**/*.js','!node_modules/**'])
@@ -32,9 +33,9 @@ gulp.task('publish', () => {
       p.dirname = path.join(process.env.AWS_S3_PATH, p.dirname);
     })))
     .pipe(awspublish.gzip())
-    .pipe(publisher.publish(headers, {
+    .pipe(parallelize(publisher.publish(headers, {
       force: true,
-    }))
+    }), 8))
     .pipe(publisher.cache())
     .pipe(awspublish.reporter());
 });
