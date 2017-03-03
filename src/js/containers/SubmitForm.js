@@ -42,7 +42,10 @@ let SubmitForm = class SubmitForm extends Component {
       schema: {
         id: `fb_insights_${level}`,
         alias: `FB Insights - ${level}`,
-        columns: insightsColumns.filter(c => (targetSchemaIds.indexOf(c.id) !== -1)),
+        columns: insightsColumns.filter((c) => {
+          const id = insightsConverters[c.id] ? insightsConverters[c.id].id : c.id;
+          return targetSchemaIds.indexOf(id) !== -1;
+        }),
       },
       params: {
         level,

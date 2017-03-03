@@ -30,7 +30,7 @@ const setup = () => {
       for (let i = 0; i < data.length; i += 1) {
         const d = data[i];
         tableData.push(schema.columns.reduce((h, c) => {
-          return Object.assign(h, { [c.id]: converters[c.id] ? JSONPath({ json: d, path: converters[c.id] })[0] : d[c.id] });
+          return Object.assign(h, { [c.id]: converters[c.id] ? JSONPath({ json: d, path: converters[c.id].path })[0] : d[c.id] });
         }, {}));
       }
       table.appendRows(tableData);
