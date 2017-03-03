@@ -3,6 +3,7 @@ import fb from '../utils/fb';
 export const REQUEST_FETCH_ADACCOUNTS = 'REQUEST_FETCH_ADACCOUNTS';
 export const COMPLETE_FETCH_ADACCOUNTS = 'COMPLETE_FETCH_ADACCOUNTS';
 export const FETCH_ADACCOUNTS = 'FETCH_ADACCOUNTS';
+export const SELECT_ADACCOUNT = 'SELECT_ADACCOUNT';
 export const SET_FB_STATUS = 'SET_FB_STATUS';
 
 export const requestFetchAdaccounts = () => { return { type: REQUEST_FETCH_ADACCOUNTS } };
@@ -17,6 +18,13 @@ export const fetchAdaccounts = () => {
       });
       dispatch(completeFetchAdaccounts());
     });
+  };
+};
+
+export const selectAdaccount = (id) => {
+  return {
+    type: SELECT_ADACCOUNT,
+    payload: { id },
   };
 };
 

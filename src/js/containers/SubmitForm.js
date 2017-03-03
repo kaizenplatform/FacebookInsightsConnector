@@ -5,15 +5,11 @@ import FbObjectSelectField from '../components/form/FbObjectSelectField';
 import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
 import schema from '../schema';
-import { fetchAdaccounts, selectAdaccount } from '../actions';
 
 const tableau = window.tableau;
 
 const validate = ({ adaccountId, level, dateRange }) => {
   const errors = {};
-  if (!adaccountId) {
-    errors.adaccountId = 'Required'
-  }
   if (!level) {
     errors.level = 'Required'
   }
@@ -33,16 +29,12 @@ class SubmitForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchAdaccounts();
-  }
-
   handleSubmit(data) {
-    const { fbStatus } = this.props;
-    const { adaccountId, level, dateRange } = data;
+    const { adaccounts: { current }, fbStatus } = this.props;
+    const { level, dateRange } = data;
 
     let connectionData = {
-      path: "v2.8/" + adaccountId + "/insights",
+      path: "v2.8/" + current + "/insights",
       schema: schema[level],
       params: {
         level,
@@ -62,20 +54,10 @@ class SubmitForm extends Component {
   }
 
   render() {
-    const { handleSubmit, adaccounts, pristine, submitting } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit(this.handleSubmit)}>
-        <div className="form-group">
-          <Field
-            name="adaccountId"
-            component={FbObjectSelectField}
-            options={Object.values(adaccounts.all)}
-            isLoading={adaccounts.isFetching}
-            disabled={adaccounts.isFetching || submitting}
-            clearable={false}
-          />
-        </div>
         <div className="form-group">
           <Field
             name="level"
@@ -111,4 +93,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchAdaccounts })(SubmitForm);
+export default connect(mapStateToProps)(SubmitForm);
