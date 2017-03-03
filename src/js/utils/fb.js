@@ -1,9 +1,11 @@
 const getLogInUrl = (appId, scopes) => {
   const currentUrl = window.location.href;
   const uri = encodeURI(
-    "https://www.facebook.com/dialog/oauth?client_id=" + appId +
+    "https://www.facebook.com/dialog/oauth?" +
+      "client_id=" + appId +
       "&redirect_uri=" + currentUrl +
-      "&response_type=token&scope=" + scopes.join(",")
+      "&response_type=token" +
+      "&scope=" + scopes.join(",")
   );
   return uri;
 };

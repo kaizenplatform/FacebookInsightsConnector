@@ -3,7 +3,7 @@ import fb from '../utils/fb';
 
 const FbSignOutLink = (_props) => {
   const url = fb.getLogOutUrl();
-  return (<a href={url} className="btn btn-danger">Sign Out</a>);
+  return (<button className="btn btn-danger" onClick={e => window.top.location = url}>Sign Out</button>);
 };
 
 export default FbSignOutLink;
