@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import moment from 'moment';
 import FbObjectSelectField from '../components/form/FbObjectSelectField';
 import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
@@ -87,6 +88,7 @@ class SubmitForm extends Component {
 
 SubmitForm = reduxForm({
   form: 'SubmitForm',
+  initialValues: { level: 'campaign', dateRange: { startDate: moment().add(-30, 'd'), endDate: moment() } },
   validate
 })(SubmitForm)
 
