@@ -75,7 +75,7 @@ npm run test
 
 ## Copyright
 
-Copyright (c) 2017 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
+Copyright (c) 2017 KAIZEN platform. See [LICENSE](LICENSE) for details.
 
 
 [build-image]: https://circleci.com/gh/kaizenplatform/FbInsightsWebDataConnector.svg?style=svg
