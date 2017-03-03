@@ -6,6 +6,7 @@ import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
 import insightsColumns from '../schema/insightsColumns';
 import insightsFields from '../schema/insightsFields';
+import insightsConverters from '../schema/insightsConverters';
 
 const tableau = window.tableau;
 
@@ -44,6 +45,7 @@ let SubmitForm = class SubmitForm extends Component {
           until: dateRange.endDate.format('YYYY-MM-DD'),
         },
       },
+      converters: insightsConverters,
     };
 
     tableau.connectionData = JSON.stringify(connectionData);

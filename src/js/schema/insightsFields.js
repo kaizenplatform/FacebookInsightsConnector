@@ -20,4 +20,5 @@ export default [
   'spend',
   'frequency',
   'reach',
+  'relevance_score',
 ];

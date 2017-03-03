@@ -22,4 +22,7 @@ export default [
   { id: 'spend', alias: 'Spend', dataType: tableau.dataTypeEnum.float },
   { id: 'frequency', alias: 'Frequency', dataType: tableau.dataTypeEnum.float },
   { id: 'reach', alias: 'Reach', dataType: tableau.dataTypeEnum.int },
+  { id: 'score', alias: 'Relevance Score', dataType: tableau.dataTypeEnum.int },
+  { id: 'positive_feedback', alias: 'Positive Feedback', dataType: tableau.dataTypeEnum.string },
+  { id: 'negative_feedback', alias: 'Negative Feedback', dataType: tableau.dataTypeEnum.string },
 ];

@@ -1,3 +1,4 @@
+import JSONPath from 'jsonpath-plus';
 import fb from './fb';
 
 const tableau = window.tableau;
@@ -20,12 +21,17 @@ const setup = () => {
       date_format: 'U',
       limit: 100,
     }, connectionData.params);
+    const schema = connectionData.schema;
+    const converters = connectionData.converters;
 
     fb.paginateConnection(firstPage, params, (data, next) => {
       window.tableau.log(`FB Response: ${JSON.stringify(data)}`);
       const tableData = [];
       for (let i = 0; i < data.length; i += 1) {
-        tableData.push(data[i]);
+        const d = data[i];
+        tableData.push(schema.columns.reduce((h, c) => {
+          return Object.assign(h, { [c.id]: converters[c.id] ? JSONPath({ json: d, path: converters[c.id] })[0] : d[c.id] });
+        }, {}));
       }
       table.appendRows(tableData);
 
