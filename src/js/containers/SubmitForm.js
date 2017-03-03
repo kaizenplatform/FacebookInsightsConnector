@@ -32,7 +32,7 @@ let SubmitForm = class SubmitForm extends Component {
   }
 
   handleSubmit(data) {
-    const { adaccounts: { current }, fbStatus } = this.props;
+    const { adaccounts: { current, all }, fbStatus } = this.props;
     const { level, dateRange, breakdowns } = data;
     const fields = insightsFields.map(f => f.id);
     const targetSchemaIds = fields.slice().concat(breakdowns);
@@ -40,8 +40,8 @@ let SubmitForm = class SubmitForm extends Component {
     const connectionData = {
       path: `v2.8/${current}/insights`,
       schema: {
-        id: `fb_insights_${level}`,
-        alias: `FB Insights - ${level}`,
+        id: `fb_insights_${current}_${level}`,
+        alias: `FB Insights: ${all[current].name} (${level})`,
         columns: insightsColumns.filter((c) => {
           const id = insightsConverters[c.id] ? insightsConverters[c.id].id : c.id;
           return targetSchemaIds.indexOf(id) !== -1;
