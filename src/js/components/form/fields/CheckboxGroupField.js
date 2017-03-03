@@ -1,7 +1,6 @@
 import React from 'react';
 import { ControlLabel, ButtonGroup, Button } from 'react-bootstrap';
-import Error from './Error';
-import FormGroup from './FormGroup';
+import { Error, FormGroup } from '../common';
 
 const eachSlice = (array, size = 1) => {
   const res = [];

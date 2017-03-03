@@ -1,7 +1,6 @@
 import React from 'react';
 import { ButtonGroup, Button, ControlLabel } from 'react-bootstrap';
-import Error from './Error';
-import FormGroup from './FormGroup';
+import { Error, FormGroup } from '../common';
 
 const RadioGroupField = (props) => {
   const { name, label, options, input: { value, onChange }, meta } = props;

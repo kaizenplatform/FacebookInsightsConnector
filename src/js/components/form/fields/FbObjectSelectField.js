@@ -1,8 +1,6 @@
 import React from 'react';
 import { ControlLabel } from 'react-bootstrap';
-import Select from './Select';
-import Error from './Error';
-import FormGroup from './FormGroup';
+import { Select, Error, FormGroup } from '../common';
 
 const SelectField = (props) => {
   const { name, label, input: { value, onBlur, onChange }, meta, ...rest } = props;

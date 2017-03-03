@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Select from '../components/form/Select';
+import Select from '../components/form/common/Select';
 import { fetchAdaccounts, selectAdaccount } from '../actions';
 
 class AdaccountSelector extends Component {

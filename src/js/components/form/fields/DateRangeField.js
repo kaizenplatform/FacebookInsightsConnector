@@ -1,8 +1,7 @@
 import React from 'react';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { ControlLabel, FormControl } from 'react-bootstrap';
-import Error from './Error';
-import FormGroup from './FormGroup';
+import { Error, FormGroup } from '../common';
 
 const DateRangeField = (props) => {
   const { name, label, input: { value, onChange }, meta, ...rest } = props;

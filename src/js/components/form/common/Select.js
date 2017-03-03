@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactSelect from 'react-select';
+import OrgSelect from 'react-select';
 
 const itemRenderer = (item) => {
   return (
@@ -12,7 +12,7 @@ const itemRenderer = (item) => {
 
 const Select = (props) => {
   return (
-    <ReactSelect
+    <OrgSelect
       optionRenderer={itemRenderer}
       valueRenderer={itemRenderer}
       labelKey="name"
