@@ -11,6 +11,11 @@ export const completeFetchAdaccounts = () => ({ type: COMPLETE_FETCH_ADACCOUNTS 
 export const fetchAdaccounts = () => (dispatch) => {
   dispatch(requestFetchAdaccounts());
   FB.api('v2.8/me/adaccounts', { fields: 'id,name' }, (response) => {
+    if (!response) {
+      throw new Error('FB API: Unknown error');
+    } else if (response.error) {
+      throw new Error(`FB API: ${response.error.message}`);
+    }
     dispatch({
       type: FETCH_ADACCOUNTS,
       payload: response,
