@@ -8,7 +8,9 @@ import insightsColumns from '../schema/insightsColumns';
 
 const tableau = window.tableau;
 
-const required = value => value || 'Required';
+const required = (value) => {
+  return value ? undefined : 'Required';
+};
 
 let SubmitForm = class SubmitForm extends Component {
   static propTypes = {

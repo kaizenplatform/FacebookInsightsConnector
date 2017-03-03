@@ -9,7 +9,7 @@ const adaccounts = (state = initialState, action) => {
     case COMPLETE_FETCH_ADACCOUNTS:
       return { ...state, isFetching: false };
     case FETCH_ADACCOUNTS:
-      return { ...state, all: action.payload.data.reduce((h, x) => Object.assign(h, [x.id]: x), {}) };
+      return { ...state, all: action.payload.data.reduce((h, x) => Object.assign(h, { [x.id]: x }), {}) };
     case SELECT_ADACCOUNT:
       return { ...state, current: action.payload.id };
     default:

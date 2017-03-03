@@ -8,6 +8,7 @@ rules:
   'no-unused-vars':
     - error
     - argsIgnorePattern: '^_'
+  'arrow-body-style': off
   'no-shadow': off
   'react/jsx-filename-extension': off
   'react/forbid-prop-types': off
