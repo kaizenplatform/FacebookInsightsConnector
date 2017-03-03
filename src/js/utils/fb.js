@@ -1,20 +1,23 @@
 const getLogInUrl = (appId, scopes) => {
   const currentUrl = window.location.href;
   const uri = encodeURI(
-    `${'https://www.facebook.com/dialog/oauth?' +
-      'client_id='}${appId
-      }&redirect_uri=${currentUrl
-      }&response_type=token` +
-      `&scope=${scopes.join(',')}`,
+    `https://www.facebook.com/dialog/oauth\
+      ?client_id=${appId}\
+      &redirect_uri=${currentUrl}\
+      &response_type=token\
+      &scope=${scopes.join(',')}\
+    `,
   );
   return uri;
 };
 
 const getLogOutUrl = () => {
   const currentUrl = window.location.href;
-  const uri = encodeURI(`${'https://www.facebook.com/logout.php' +
-    '?next='}${currentUrl
-    }&access_token=${FB.getAccessToken()}`,
+  const uri = encodeURI(
+    `https://www.facebook.com/logout.php\
+      ?next=${currentUrl}\
+      &access_token=${FB.getAccessToken()}\
+    `,
   );
   return uri;
 };
