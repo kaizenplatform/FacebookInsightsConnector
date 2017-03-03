@@ -4,14 +4,20 @@ import { reduxForm, Field } from 'redux-form';
 import moment from 'moment';
 import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
+import CheckboxGroupField from '../components/form/CheckboxGroupField';
 import insightsColumns from '../schema/insightsColumns';
 import insightsFields from '../schema/insightsFields';
 import insightsConverters from '../schema/insightsConverters';
+import insightsBreakdowns from '../schema/insightsBreakdowns';
 
 const tableau = window.tableau;
 
 const required = (value) => {
   return value ? undefined : 'Required';
+};
+
+const validateBreakdown = (value) => {
+  return !value || insightsBreakdowns.indexOf(value) ? undefined : 'Invalid';
 };
 
 let SubmitForm = class SubmitForm extends Component {
@@ -26,20 +32,23 @@ let SubmitForm = class SubmitForm extends Component {
 
   handleSubmit(data) {
     const { adaccounts: { current }, fbStatus } = this.props;
-    const { level, dateRange } = data;
+    const { level, dateRange, breakdowns } = data;
+    const fields = insightsFields;
+    const targetSchemaIds = fields.slice().concat(breakdowns);
 
     const connectionData = {
       path: `v2.8/${current}/insights`,
       schema: {
         id: `fb_insights_${level}`,
         alias: `FB Insights - ${level}`,
-        columns: insightsColumns,
+        columns: insightsColumns.filter(c => (targetSchemaIds.indexOf(c.id) !== -1)),
       },
       params: {
         level,
         access_token: fbStatus.token,
-        fields: insightsFields.join(','),
+        fields: fields.join(','),
         time_increment: 1,
+        breakdowns,
         time_range: {
           since: dateRange.startDate.format('YYYY-MM-DD'),
           until: dateRange.endDate.format('YYYY-MM-DD'),
@@ -73,6 +82,16 @@ let SubmitForm = class SubmitForm extends Component {
             disabled={submitting}
             locale={{ format: 'YYYY/MM/DD' }}
             validate={[required]}
+          />
+        </div>
+        <div className="form-group">
+          <Field
+            component={CheckboxGroupField}
+            name="breakdowns"
+            label="Breakdowns"
+            options={insightsBreakdowns.map(name => ({ id: name, name }))}
+            columnNumber="4"
+            validate={[validateBreakdown]}
           />
         </div>
         <button type="submit" className="btn btn-success">

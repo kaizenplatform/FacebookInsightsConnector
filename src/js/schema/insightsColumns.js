@@ -2,6 +2,7 @@ const tableau = window.tableau;
 
 // See https://developers.facebook.com/docs/marketing-api/insights/fields/v2.8
 export default [
+  // Dimension columns
   { id: 'account_id', alias: 'Account ID', columnRole: 'dimension', dataType: tableau.dataTypeEnum.string },
   { id: 'account_name', alias: 'Account Name', columnRole: 'dimension', dataType: tableau.dataTypeEnum.string },
   { id: 'campaign_id', alias: 'Campaign ID', columnRole: 'dimension', dataType: tableau.dataTypeEnum.string },
@@ -10,6 +11,22 @@ export default [
   { id: 'adset_name', alias: 'AdSet Name', columnRole: 'dimension', dataType: tableau.dataTypeEnum.string },
   { id: 'ad_id', alias: 'Ad ID', columnRole: 'dimension', dataType: tableau.dataTypeEnum.string },
   { id: 'ad_name', alias: 'Ad Name', columnRole: 'dimension', dataType: tableau.dataTypeEnum.string },
+  // Breakdown columns
+  { id: 'age', alias: 'Age', dataType: tableau.dataTypeEnum.string },
+  { id: 'country', alias: 'Country', dataType: tableau.dataTypeEnum.string },
+  { id: 'gender', alias: 'Gender', dataType: tableau.dataTypeEnum.string },
+  { id: 'frequency_value', alias: 'Frequency Value', dataType: tableau.dataTypeEnum.string },
+  { id: 'hourly_stats_aggregated_by_advertiser_time_zone', alias: 'Hour (Advertiser)', dataType: tableau.dataTypeEnum.string },
+  { id: 'hourly_stats_aggregated_by_audience_time_zone', alias: 'Hour (Audience)', dataType: tableau.dataTypeEnum.string },
+  { id: 'impression_device', alias: 'Impression Device', dataType: tableau.dataTypeEnum.string },
+  { id: 'place_page_id', alias: 'Place Page ID', dataType: tableau.dataTypeEnum.string },
+  { id: 'placement', alias: 'Placement', dataType: tableau.dataTypeEnum.string },
+  { id: 'publisher_platform', alias: 'Publisher Platform', dataType: tableau.dataTypeEnum.string },
+  { id: 'platform_position', alias: 'Platform Position', dataType: tableau.dataTypeEnum.string },
+  { id: 'device_platform', alias: 'Device Platform', dataType: tableau.dataTypeEnum.string },
+  { id: 'product_id', alias: 'Product ID', dataType: tableau.dataTypeEnum.string },
+  { id: 'region', alias: 'Region', dataType: tableau.dataTypeEnum.string },
+  // Value columns
   { id: 'date_start', alias: 'Date Start', dataType: tableau.dataTypeEnum.date },
   { id: 'date_stop', alias: 'Date Stop', dataType: tableau.dataTypeEnum.date },
   { id: 'objective', alias: 'Objective', dataType: tableau.dataTypeEnum.string },
