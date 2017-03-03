@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import FbObjectSelectField from '../components/form/FbObjectSelectField';
 import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
-import schema from '../schema';
+import insightsColumns from '../schema/insightsColumns';
 
 const tableau = window.tableau;
 
@@ -35,11 +35,15 @@ class SubmitForm extends Component {
 
     let connectionData = {
       path: "v2.8/" + current + "/insights",
-      schema: schema[level],
+      schema: {
+        id: `fb_insights_${level}`,
+        alias: `FB Insights - ${level}`,
+        columns: insightsColumns,
+      },
       params: {
         level,
         access_token: fbStatus.token,
-        fields: schema[level].columns.map(x => x.id).join(','),
+        fields: insightsColumns.map(x => x.id).join(','),
         time_increment: 1,
         time_range: {
           since: dateRange.startDate.format("YYYY-MM-DD"),
