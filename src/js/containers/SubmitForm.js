@@ -34,7 +34,7 @@ let SubmitForm = class SubmitForm extends Component {
   handleSubmit(data) {
     const { adaccounts: { current }, fbStatus } = this.props;
     const { level, dateRange, breakdowns } = data;
-    const fields = insightsFields;
+    const fields = insightsFields.map(f => f.id);
     const targetSchemaIds = fields.slice().concat(breakdowns);
 
     const connectionData = {
@@ -91,7 +91,7 @@ let SubmitForm = class SubmitForm extends Component {
             component={CheckboxGroupField}
             name="breakdowns"
             label="Breakdowns"
-            options={insightsBreakdowns.map(name => ({ id: name, name }))}
+            options={insightsBreakdowns}
             columnNumber="4"
             validate={[validateBreakdown]}
           />
