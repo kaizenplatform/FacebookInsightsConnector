@@ -44,7 +44,7 @@ const App = (props) => {
         </div>
       </div>
 
-      <div id="message"></div>
+      <div id="message" />
     </div>
   );
 };

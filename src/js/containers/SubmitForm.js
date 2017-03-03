@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import moment from 'moment';
-import FbObjectSelectField from '../components/form/FbObjectSelectField';
 import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
 import insightsColumns from '../schema/insightsColumns';
 
 const tableau = window.tableau;
 
-const required = value => value ? undefined : 'Required'
+const required = value => value || 'Required';
 
-class SubmitForm extends Component {
+let SubmitForm = class SubmitForm extends Component {
   static propTypes = {
-    adaccounts: React.PropTypes.object.isRequired
+    adaccounts: React.PropTypes.object.isRequired,
   }
 
   constructor() {
@@ -25,8 +24,8 @@ class SubmitForm extends Component {
     const { adaccounts: { current }, fbStatus } = this.props;
     const { level, dateRange } = data;
 
-    let connectionData = {
-      path: "v2.8/" + current + "/insights",
+    const connectionData = {
+      path: `v2.8/${current}/insights`,
       schema: {
         id: `fb_insights_${level}`,
         alias: `FB Insights - ${level}`,
@@ -38,19 +37,19 @@ class SubmitForm extends Component {
         fields: insightsColumns.map(x => x.id).join(','),
         time_increment: 1,
         time_range: {
-          since: dateRange.startDate.format("YYYY-MM-DD"),
-          until: dateRange.endDate.format("YYYY-MM-DD")
+          since: dateRange.startDate.format('YYYY-MM-DD'),
+          until: dateRange.endDate.format('YYYY-MM-DD'),
         },
       },
     };
 
     tableau.connectionData = JSON.stringify(connectionData);
-    tableau.connectionName = "Facebook Insights Connector";
+    tableau.connectionName = 'Facebook Insights Connector';
     tableau.submit();
   }
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { handleSubmit, submitting } = this.props;
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit(this.handleSubmit)}>
@@ -82,13 +81,13 @@ class SubmitForm extends Component {
 SubmitForm = reduxForm({
   form: 'SubmitForm',
   initialValues: { level: 'campaign', dateRange: { startDate: moment().add(-30, 'd'), endDate: moment() } },
-})(SubmitForm)
+})(SubmitForm);
 
 function mapStateToProps(state) {
   return {
     adaccounts: state.adaccounts,
     fbStatus: state.fbStatus,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(SubmitForm);

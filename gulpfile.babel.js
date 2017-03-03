@@ -1,5 +1,6 @@
 require('dotenv').config()
 import gulp from 'gulp';
+import gulpIf from 'gulp-if';
 import path from 'path';
 import runSequence from 'run-sequence';
 import rename from 'gulp-rename';
@@ -10,9 +11,17 @@ import awspublish from 'gulp-awspublish';
 import parallelize from 'concurrent-transform';
 
 gulp.task('lint', () => {
-  return gulp.src(['src/**/*.js','!node_modules/**'])
+  return gulp.src(['src/**/*.js', '!node_modules/**'])
+    .pipe(eslint({ fix: false }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task('lint-fix', () => {
+  return gulp.src(['src/**/*.js', '!node_modules/**'])
     .pipe(eslint({ fix: true }))
     .pipe(eslint.format())
+    .pipe(gulpIf(file => file.eslint != null && file.eslint.fixed, gulp.dest('src/')))
     .pipe(eslint.failAfterError());
 });
 

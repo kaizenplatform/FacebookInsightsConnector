@@ -1,3 +1,3 @@
 /* global process */
 /* eslint no-undef: "error" */
-export default process.env
+export default process.env;

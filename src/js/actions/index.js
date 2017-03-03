@@ -6,38 +6,34 @@ export const FETCH_ADACCOUNTS = 'FETCH_ADACCOUNTS';
 export const SELECT_ADACCOUNT = 'SELECT_ADACCOUNT';
 export const SET_FB_STATUS = 'SET_FB_STATUS';
 
-export const requestFetchAdaccounts = () => { return { type: REQUEST_FETCH_ADACCOUNTS } };
-export const completeFetchAdaccounts = () => { return { type: COMPLETE_FETCH_ADACCOUNTS } };
-export const fetchAdaccounts = () => {
-  return dispatch => {
-    dispatch(requestFetchAdaccounts());
-    FB.api('v2.8/me/adaccounts', { 'fields': 'id,name' }, function(response) {
-      dispatch({
-        type: FETCH_ADACCOUNTS,
-        payload: response,
-      });
-      dispatch(completeFetchAdaccounts());
+export const requestFetchAdaccounts = () => ({ type: REQUEST_FETCH_ADACCOUNTS });
+export const completeFetchAdaccounts = () => ({ type: COMPLETE_FETCH_ADACCOUNTS });
+export const fetchAdaccounts = () => (dispatch) => {
+  dispatch(requestFetchAdaccounts());
+  FB.api('v2.8/me/adaccounts', { fields: 'id,name' }, (response) => {
+    dispatch({
+      type: FETCH_ADACCOUNTS,
+      payload: response,
     });
-  };
+    dispatch(completeFetchAdaccounts());
+  });
 };
 
-export const selectAdaccount = (id) => {
-  return {
-    type: SELECT_ADACCOUNT,
-    payload: { id },
-  };
-};
+export const selectAdaccount = id => ({
+  type: SELECT_ADACCOUNT,
+  payload: { id },
+});
 
 export const setFbStatus = (status) => {
   let request = { status };
   if (status === 'connected') {
     request = (dispatch) => {
-      FB.api('v2.8/me', { 'fields': 'id,email,name' }, function(response) {
+      FB.api('v2.8/me', { fields: 'id,email,name' }, (response) => {
         const { id, email, name } = response;
         const token = fb.getAccessToken();
         dispatch({
           type: SET_FB_STATUS,
-          payload: { status, id, email, name, token }
+          payload: { status, id, email, name, token },
         });
       });
     };

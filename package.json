@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp compile",
-    "lint": "gulp eslint",
+    "lint": "gulp lint",
+    "lint-fix": "gulp lint-fix",
     "deploy": "gulp deploy",
     "start": "webpack-dev-server"
   },
@@ -52,6 +53,7 @@
     "gulp": "^3.9.1",
     "gulp-awspublish": "^3.3.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-if": "^2.0.2",
     "gulp-rename": "^1.2.2",
     "node-sass": "^4.5.0",
     "run-sequence": "^1.2.2",

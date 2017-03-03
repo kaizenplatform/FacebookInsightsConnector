@@ -12,8 +12,9 @@ class LevelButtons extends Component {
     return (
       <Button
         href="#"
-        active={value == key}
-        onClick={() => onChange(key)}>
+        active={value === key}
+        onClick={() => onChange(key)}
+      >
         {text}
       </Button>
     );
@@ -23,12 +24,12 @@ class LevelButtons extends Component {
     const { disabled } = this.props;
     return (
       <ButtonGroup justified disabled={disabled}>
-        {this.renderButton("campaign", "Campaign")}
-        {this.renderButton("adset", "Adset")}
-        {this.renderButton("ad", "Ad")}
+        {this.renderButton('campaign', 'Campaign')}
+        {this.renderButton('adset', 'Adset')}
+        {this.renderButton('ad', 'Ad')}
       </ButtonGroup>
     );
   }
-};
+}
 
 export default LevelButtons;

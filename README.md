@@ -38,6 +38,15 @@ open http://localhost:8888/Simulator/index.html
 
 Set `http://localhost:8080/` at WDC URL of the UI.
 
+### Lint
+
+Lint the code to align the coding styles.
+
+```bash
+npm run lint
+npm run lint-fix # Fix lint errors automatically
+```
+
 ## Production
 
 ### Deploy

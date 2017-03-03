@@ -15,7 +15,7 @@ class AdaccountSelector extends Component {
       <FbObjectSelect
         options={Object.values(all)}
         value={current}
-        onChange={(x) => selectAdaccount(x.id)}
+        onChange={x => selectAdaccount(x.id)}
         isLoading={isFetching}
         disabled={isFetching}
         clearable={false}
@@ -28,7 +28,7 @@ class AdaccountSelector extends Component {
 function mapStateToProps(state) {
   return {
     adaccounts: state.adaccounts,
-  }
+  };
 }
 
 export default connect(mapStateToProps, { fetchAdaccounts, selectAdaccount })(AdaccountSelector);

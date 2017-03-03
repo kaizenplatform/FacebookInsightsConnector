@@ -4,9 +4,9 @@ const initialState = { status: null, email: null, name: null, token: null };
 
 const fbStatus = (state = initialState, action) => {
   const { status, email, name, token } = action.payload || {};
-  switch(action.type) {
+  switch (action.type) {
     case SET_FB_STATUS:
-      return { ...state, status, email, name, token }
+      return { ...state, status, email, name, token };
     default:
       return state;
   }
