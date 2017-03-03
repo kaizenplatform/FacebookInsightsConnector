@@ -5,6 +5,7 @@ import moment from 'moment';
 import LevelButtonsField from '../components/form/LevelButtonsField';
 import DateRangeField from '../components/form/DateRangeField';
 import insightsColumns from '../schema/insightsColumns';
+import insightsFields from '../schema/insightsFields';
 
 const tableau = window.tableau;
 
@@ -36,7 +37,7 @@ let SubmitForm = class SubmitForm extends Component {
       params: {
         level,
         access_token: fbStatus.token,
-        fields: insightsColumns.map(x => x.id).join(','),
+        fields: insightsFields.join(','),
         time_increment: 1,
         time_range: {
           since: dateRange.startDate.format('YYYY-MM-DD'),
