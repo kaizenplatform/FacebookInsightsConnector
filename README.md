@@ -10,6 +10,14 @@ The [Web Data Connector](https://tableau.github.io/webdataconnector/) for Facebo
 npm install
 ```
 
+### Settings
+
+```bash
+cp .env.sample .env
+```
+
+Then, Set up the envs for yourself.
+
 ## Development
 
 ```bash
@@ -33,12 +41,6 @@ Set `http://localhost:8080/` at WDC URL of the UI.
 ## Production
 
 ### Deploy
-
-```bash
-cp .env.sample .env
-```
-
-Then, Set up the envs for yourself.
 
 ```bash
 npm run deploy
