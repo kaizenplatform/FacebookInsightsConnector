@@ -9,16 +9,7 @@ import insightsColumns from '../schema/insightsColumns';
 
 const tableau = window.tableau;
 
-const validate = ({ adaccountId, level, dateRange }) => {
-  const errors = {};
-  if (!level) {
-    errors.level = 'Required'
-  }
-  if (!dateRange || !dateRange.endDate || !dateRange.startDate) {
-    errors.dateRange = 'Required'
-  }
-  return errors;
-}
+const required = value => value ? undefined : 'Required'
 
 class SubmitForm extends Component {
   static propTypes = {
@@ -68,6 +59,7 @@ class SubmitForm extends Component {
             name="level"
             component={LevelButtonsField}
             disabled={submitting}
+            validate={[required]}
           />
         </div>
         <div className="form-group">
@@ -76,6 +68,7 @@ class SubmitForm extends Component {
             component={DateRangeField}
             disabled={submitting}
             locale={{ format: 'YYYY/MM/DD' }}
+            validate={[required]}
           />
         </div>
         <button type="submit" className="btn btn-success">
@@ -89,7 +82,6 @@ class SubmitForm extends Component {
 SubmitForm = reduxForm({
   form: 'SubmitForm',
   initialValues: { level: 'campaign', dateRange: { startDate: moment().add(-30, 'd'), endDate: moment() } },
-  validate
 })(SubmitForm)
 
 function mapStateToProps(state) {
