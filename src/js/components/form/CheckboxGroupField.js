@@ -1,7 +1,7 @@
 import React from 'react';
-import { ControlLabel, HelpBlock, ButtonGroup, Button } from 'react-bootstrap';
-
-const Error = ({ meta: { touched, error } }) => (touched && error ? <HelpBlock>{error}</HelpBlock> : null);
+import { ControlLabel, ButtonGroup, Button } from 'react-bootstrap';
+import Error from './Error';
+import FormGroup from './FormGroup';
 
 const eachSlice = (array, size = 1) => {
   const res = [];
@@ -15,7 +15,7 @@ const eachSlice = (array, size = 1) => {
 const CheckboxGroupField = ({ label, name, options, columnNumber = 1, input, meta }) => {
   const { onChange, value } = input;
   return (
-    <div>
+    <FormGroup meta={meta}>
       <div className="col-md-2">
         <ControlLabel htmlFor={name}>{label}</ControlLabel>
       </div>
@@ -47,7 +47,7 @@ const CheckboxGroupField = ({ label, name, options, columnNumber = 1, input, met
         )) }
         <Error meta={meta} />
       </div>
-    </div>
+    </FormGroup>
   );
 };
 

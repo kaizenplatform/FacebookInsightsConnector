@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
+import ReactSelect from 'react-select';
 
 const itemRenderer = (item) => {
   return (
@@ -10,9 +10,9 @@ const itemRenderer = (item) => {
   );
 };
 
-const FbObjectSelect = (props) => {
+const Select = (props) => {
   return (
-    <Select
+    <ReactSelect
       optionRenderer={itemRenderer}
       valueRenderer={itemRenderer}
       labelKey="name"
@@ -24,4 +24,4 @@ const FbObjectSelect = (props) => {
   );
 };
 
-export default FbObjectSelect;
+export default Select;

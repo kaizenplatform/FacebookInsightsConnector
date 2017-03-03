@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import moment from 'moment';
-import LevelButtonsField from '../components/form/LevelButtonsField';
+import RadioGroupField from '../components/form/RadioGroupField';
 import DateRangeField from '../components/form/DateRangeField';
 import CheckboxGroupField from '../components/form/CheckboxGroupField';
 import insightsColumns from '../schema/insightsColumns';
 import insightsFields from '../schema/insightsFields';
 import insightsConverters from '../schema/insightsConverters';
 import insightsBreakdowns from '../schema/insightsBreakdowns';
+import insightsLevels from '../schema/insightsLevels';
 
 const tableau = window.tableau;
 
@@ -63,23 +64,24 @@ let SubmitForm = class SubmitForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit(this.handleSubmit)}>
         <div className="form-group">
           <Field
+            component={RadioGroupField}
             name="level"
-            component={LevelButtonsField}
-            disabled={submitting}
+            label="Level"
+            options={insightsLevels}
             validate={[required]}
           />
         </div>
         <div className="form-group">
           <Field
-            name="dateRange"
             component={DateRangeField}
-            disabled={submitting}
+            name="dateRange"
+            label="Date Range"
             locale={{ format: 'YYYY/MM/DD' }}
             validate={[required]}
           />

@@ -1,19 +1,20 @@
 import React from 'react';
-import FbObjectSelect from './FbObjectSelect';
+import { ControlLabel } from 'react-bootstrap';
+import Select from './Select';
+import Error from './Error';
+import FormGroup from './FormGroup';
 
-const FbObjectSelectField = (props) => {
-  const { input: { value, name, onBlur, onChange }, meta: { touched, error }, ...rest } = props;
-  let className;
-  if (touched && error) {
-    className = 'has-error';
-  }
+const SelectField = (props) => {
+  const { name, label, input: { value, onBlur, onChange }, meta, ...rest } = props;
 
   return (
-    <div className={className}>
-      <label htmlFor="adaccountId" className="col-md-2 control-label">AdAccount</label>
+    <FormGroup meta={meta}>
+      <div className="col-md-2">
+        <ControlLabel htmlFor={name}>{label}</ControlLabel>
+      </div>
       <div className="col-md-10">
         <div>
-          <FbObjectSelect
+          <Select
             value={value}
             name={name}
             onBlur={() => onBlur(value)}
@@ -21,10 +22,10 @@ const FbObjectSelectField = (props) => {
             {...rest}
           />
         </div>
-        <div className="help-block">{touched && error}</div>
+        <Error meta={meta} />
       </div>
-    </div>
+    </FormGroup>
   );
 };
 
-export default FbObjectSelectField;
+export default SelectField;

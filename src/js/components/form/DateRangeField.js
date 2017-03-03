@@ -1,13 +1,11 @@
 import React from 'react';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
-import { FormControl } from 'react-bootstrap';
+import { ControlLabel, FormControl } from 'react-bootstrap';
+import Error from './Error';
+import FormGroup from './FormGroup';
 
 const DateRangeField = (props) => {
-  const { input: { value, name, onChange }, meta: { touched, error }, ...rest } = props;
-  let className;
-  if (touched && error) {
-    className = 'has-error';
-  }
+  const { name, label, input: { value, onChange }, meta, ...rest } = props;
   const { startDate, endDate } = value || {};
   let inputValue = '';
   if (startDate && endDate) {
@@ -15,8 +13,10 @@ const DateRangeField = (props) => {
   }
 
   return (
-    <div className={className}>
-      <label htmlFor={name} className="col-md-2 control-label">DateRange</label>
+    <FormGroup meta={meta}>
+      <div className="col-md-2">
+        <ControlLabel htmlFor={name}>{label}</ControlLabel>
+      </div>
       <div className="col-md-10">
         <div>
           <DateRangePicker
@@ -33,9 +33,9 @@ const DateRangeField = (props) => {
             />
           </DateRangePicker>
         </div>
-        <div className="help-block">{touched && error}</div>
+        <Error meta={meta} />
       </div>
-    </div>
+    </FormGroup>
   );
 };
 

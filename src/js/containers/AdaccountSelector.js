@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FbObjectSelect from '../components/form/FbObjectSelect';
+import Select from '../components/form/Select';
 import { fetchAdaccounts, selectAdaccount } from '../actions';
 
 class AdaccountSelector extends Component {
@@ -12,7 +12,7 @@ class AdaccountSelector extends Component {
     const { adaccounts: { all, current, isFetching }, selectAdaccount } = this.props;
 
     return (
-      <FbObjectSelect
+      <Select
         options={Object.values(all)}
         value={current}
         onChange={x => selectAdaccount(x.id)}
