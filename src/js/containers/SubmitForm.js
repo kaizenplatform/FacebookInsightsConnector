@@ -49,7 +49,7 @@ let SubmitForm = class SubmitForm extends Component {
       params: {
         level,
         access_token: fbStatus.token,
-        fields: fields,
+        fields,
         time_increment: 1,
         breakdowns,
         time_range: {
