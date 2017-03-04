@@ -12,6 +12,18 @@
     "postinstall": "npm run build",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaizenplatform/FacebookInsightsConnector"
+  },
+  "engines": {
+    "node": ">= 6.1.0"
+  },
+  "keywords": [
+    "Facebook Insights",
+    "Tableau",
+    "Web Data Connector"
+  ],
   "author": "dtaniwaki",
   "license": "MIT",
   "dependencies": {
