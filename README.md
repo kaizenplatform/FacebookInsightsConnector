@@ -1,4 +1,4 @@
-# FbInsightsWebDataConnector
+# FacebookInsightsWebDataConnector
 
 [![Build Status][build-image]][build-link]
 
@@ -78,6 +78,6 @@ npm run test
 Copyright (c) 2017 KAIZEN platform. See [LICENSE](LICENSE) for details.
 
 
-[build-image]: https://circleci.com/gh/kaizenplatform/FbInsightsWebDataConnector.svg?style=svg
-[build-link]:  https://circleci.com/gh/kaizenplatform/FbInsightsWebDataConnector
+[build-image]: https://circleci.com/gh/kaizenplatform/FacebookInsightsWebDataConnector.svg?style=svg
+[build-link]:  https://circleci.com/gh/kaizenplatform/FacebookInsightsWebDataConnector
 
