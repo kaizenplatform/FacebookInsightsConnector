@@ -63,4 +63,15 @@ const paginateConnection = (page, params, cb) => {
 
 const getAccessToken = () => FB.getAccessToken();
 
-export default { setup, getLogInUrl, getLogOutUrl, paginateConnection, subscribeStatusChange, getAccessToken };
+const api = (path, params, cb) => {
+  return FB.api(path, params, (response) => {
+    if (!response) {
+      throw new Error('FB API: Unknown error');
+    } else if (response.error) {
+      throw new Error(`FB API: ${response.error.message}`);
+    }
+    cb(response);
+  });
+};
+
+export default { setup, getLogInUrl, getLogOutUrl, paginateConnection, subscribeStatusChange, getAccessToken, api };
