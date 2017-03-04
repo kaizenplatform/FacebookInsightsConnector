@@ -52,4 +52,6 @@ export function submit(name, json) {
   tableau.submit();
 }
 
-export default { setup, submit };
+export const dataTypeEnum = tableau.dataTypeEnum;
+
+export default { setup, submit, dataTypeEnum };
