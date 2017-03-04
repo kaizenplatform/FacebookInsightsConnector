@@ -23,7 +23,7 @@ Then, Set up the envs for yourself.
 ## Development
 
 ```bash
-PORT=8080 npm start
+PORT=8080 npm dev-server
 ```
 
 ### Simulator
