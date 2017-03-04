@@ -3,7 +3,7 @@ import fb from './fb';
 
 const tableau = window.tableau;
 
-const setup = () => {
+export function setup() {
   const myConnector = tableau.makeConnector();
 
   myConnector.getSchema = (schemaCallback) => {
@@ -44,6 +44,12 @@ const setup = () => {
   };
 
   tableau.registerConnector(myConnector);
-};
+}
 
-export default { setup };
+export function submit(name, json) {
+  tableau.connectionName = name;
+  tableau.connectionData = json;
+  tableau.submit();
+}
+
+export default { setup, submit };

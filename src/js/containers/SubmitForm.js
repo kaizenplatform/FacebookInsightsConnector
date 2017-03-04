@@ -10,8 +10,7 @@ import insightsFields from '../schema/insightsFields';
 import insightsConverters from '../schema/insightsConverters';
 import insightsBreakdowns from '../schema/insightsBreakdowns';
 import insightsLevels from '../schema/insightsLevels';
-
-const tableau = window.tableau;
+import { submit as tableauSubmit } from '../utils/tableau';
 
 const required = (value) => {
   return value ? undefined : 'Required';
@@ -61,9 +60,7 @@ let SubmitForm = class SubmitForm extends Component {
       converters: insightsConverters,
     };
 
-    tableau.connectionData = JSON.stringify(connectionData);
-    tableau.connectionName = 'Facebook Insights Connector';
-    tableau.submit();
+    tableauSubmit('Facebook Insights Connector', JSON.stringify(connectionData));
   }
 
   render() {
