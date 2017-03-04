@@ -20,6 +20,15 @@ cp .env.sample .env
 
 Then, Set up the envs for yourself.
 
+### Run server
+
+You can run the server with built static files.
+
+```bash
+npm start
+open http://localhost:8080/
+```
+
 ## Development
 
 ```bash
