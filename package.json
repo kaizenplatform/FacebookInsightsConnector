@@ -1,6 +1,6 @@
 {
   "name": "FacebookInsightsConnector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tableau Web Data Connector for Facebook Insights",
   "main": "index.js",
   "scripts": {
