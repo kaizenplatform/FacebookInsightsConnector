@@ -4,6 +4,8 @@
 
 The [Web Data Connector](https://tableau.github.io/webdataconnector/) for Facebook Insights.
 
+![Screenshot](misc/screenshot.png)
+
 ## Install
 
 ```bash
