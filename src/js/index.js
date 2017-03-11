@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-import App from './components/layout/App';
+import App from './containers/App';
 import fb from './utils/fb';
 import { setup as tableauSetup } from './utils/tableau';
 import { setFbStatus } from './actions';
