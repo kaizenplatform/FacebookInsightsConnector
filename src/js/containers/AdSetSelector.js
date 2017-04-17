@@ -10,21 +10,19 @@ class AdSetSelector extends Component {
   }
 
   render() {
-    const { adSets: { all, current, isFetching }, selectAdSet, currentAdAccountId } = this.props;
+    const { adSets: { all, current, isFetching }, selectAdSet } = this.props;
 
-    if (currentAdAccountId) {
-      return (
-        <Select
-          options={Object.values(all)}
-          value={current}
-          onChange={x => selectAdSet(x.id)}
-          isLoading={isFetching}
-          disabled={isFetching}
-          clearable={false}
-          placeholder="Select AdSet..."
-        />
-      );
-    }
+    return (
+      <Select
+        options={Object.values(all)}
+        value={current}
+        onChange={x => selectAdSet(x.id)}
+        isLoading={isFetching}
+        disabled={isFetching}
+        clearable={false}
+        placeholder="Select AdSet..."
+      />
+    );
   }
 }
 

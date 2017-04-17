@@ -6,7 +6,8 @@ import SubmitForm from '../../containers/SubmitForm';
 
 const Layout = (props) => {
   const { name, email, currentAdaccountId } = props;
-  let form, adSet;
+  let form;
+  let adSet;
   if (currentAdaccountId) {
     adSet = (
       <div style={{ marginBottom: '20px' }}>
