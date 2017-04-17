@@ -4,10 +4,10 @@ import DefaultLayout from '../components/layout/Default';
 import ErrorLayout from '../components/layout/Error';
 
 const App = (props) => {
-  const { fbStatus: { status, name, email }, adaccounts: { current } } = props;
+  const { fbStatus: { status, name, email }, adAccounts: { current } } = props;
   let layout;
   if (status === 'connected') {
-    layout = <DefaultLayout name={name} email={email} currentAdaccountId={current} />;
+    layout = <DefaultLayout name={name} email={email} currentAdAccountId={current} />;
   } else {
     layout = <ErrorLayout />;
   }
@@ -18,7 +18,7 @@ const App = (props) => {
 function mapStateToProps(state) {
   return {
     fbStatus: state.fbStatus,
-    adaccounts: state.adaccounts,
+    adAccounts: state.adAccounts,
   };
 }
 

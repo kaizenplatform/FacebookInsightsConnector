@@ -22,7 +22,7 @@ const validateBreakdown = (value) => {
 
 let SubmitForm = class SubmitForm extends Component {
   static propTypes = {
-    adaccounts: React.PropTypes.object.isRequired,
+    adAccounts: React.PropTypes.object.isRequired,
   }
 
   constructor() {
@@ -31,12 +31,12 @@ let SubmitForm = class SubmitForm extends Component {
   }
 
   handleSubmit(data) {
-    const { adaccounts, adSets, fbStatus } = this.props;
+    const { adAccounts, adSets, fbStatus } = this.props;
     const { level, dateRange, breakdowns } = data;
     const fields = insightsFields.map(f => f.id);
     const targetSchemaIds = fields.slice().concat(breakdowns);
-    const current = adSets.current || adaccounts.current;
-    const all = adSets.all || adaccounts.all;
+    const current = adSets.current || adAccounts.current;
+    const all = adSets.all || adAccounts.all;
 
     const connectionData = {
       path: `v2.8/${current}/insights`,
@@ -113,7 +113,7 @@ SubmitForm = reduxForm({
 
 function mapStateToProps(state) {
   return {
-    adaccounts: state.adaccounts,
+    adAccounts: state.adAccounts,
     adSets: state.adSets,
     fbStatus: state.fbStatus,
   };

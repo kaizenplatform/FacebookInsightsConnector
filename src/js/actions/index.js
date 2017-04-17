@@ -30,20 +30,20 @@ export const selectAdSet = id => ({
   payload: { id },
 });
 
-export const requestFetchAdaccounts = () => ({ type: REQUEST_FETCH_ADACCOUNTS });
-export const completeFetchAdaccounts = () => ({ type: COMPLETE_FETCH_ADACCOUNTS });
-export const fetchAdaccounts = () => (dispatch) => {
-  dispatch(requestFetchAdaccounts());
+export const requestFetchAdAccounts = () => ({ type: REQUEST_FETCH_ADACCOUNTS });
+export const completeFetchAdAccounts = () => ({ type: COMPLETE_FETCH_ADACCOUNTS });
+export const fetchAdAccounts = () => (dispatch) => {
+  dispatch(requestFetchAdAccounts());
   fb.api('v2.8/me/adaccounts', { fields: 'id,name', limit: 100 }, (response) => {
     dispatch({
       type: FETCH_ADACCOUNTS,
       payload: response,
     });
-    dispatch(completeFetchAdaccounts());
+    dispatch(completeFetchAdAccounts());
   });
 };
 
-export const selectAdaccount = (id) => {
+export const selectAdAccount = (id) => {
   return (dispatch) => {
     dispatch(fetchAdSets(id));
     dispatch({

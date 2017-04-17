@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import adaccounts from './adaccounts';
+import adAccounts from './adAccounts';
 import adSets from './adSets';
 import fbStatus from './fbStatus';
 
 const rootReducer = combineReducers({
-  adaccounts,
+  adAccounts,
   adSets,
   fbStatus,
   form: formReducer,
