@@ -31,10 +31,12 @@ let SubmitForm = class SubmitForm extends Component {
   }
 
   handleSubmit(data) {
-    const { adaccounts: { current, all }, fbStatus } = this.props;
+    const { adaccounts, adSets, fbStatus } = this.props;
     const { level, dateRange, breakdowns } = data;
     const fields = insightsFields.map(f => f.id);
     const targetSchemaIds = fields.slice().concat(breakdowns);
+    const current = adSets.current || adaccounts.current;
+    const all = adSets.all || adaccounts.all;
 
     const connectionData = {
       path: `v2.8/${current}/insights`,
@@ -106,12 +108,13 @@ let SubmitForm = class SubmitForm extends Component {
 
 SubmitForm = reduxForm({
   form: 'SubmitForm',
-  initialValues: { level: 'campaign', dateRange: { startDate: moment().add(-30, 'd'), endDate: moment() } },
+  initialValues: { level: 'ad', dateRange: { startDate: moment().add(-30, 'd'), endDate: moment() } },
 })(SubmitForm);
 
 function mapStateToProps(state) {
   return {
     adaccounts: state.adaccounts,
+    adSets: state.adSets,
     fbStatus: state.fbStatus,
   };
 }

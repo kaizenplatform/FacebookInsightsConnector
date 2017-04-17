@@ -1,12 +1,19 @@
 import React from 'react';
 import AppLayout from './App';
 import AdaccountSelector from '../../containers/AdaccountSelector';
+import AdSetSelector from '../../containers/AdSetSelector';
 import SubmitForm from '../../containers/SubmitForm';
 
 const Layout = (props) => {
   const { name, email, currentAdaccountId } = props;
-  let form;
+  let form, adSet;
   if (currentAdaccountId) {
+    adSet = (
+      <div style={{ marginBottom: '20px' }}>
+        <AdSetSelector currentAdAccountId={currentAdaccountId} />
+      </div>
+    );
+
     form = (
       <div>
         <SubmitForm />
@@ -21,6 +28,7 @@ const Layout = (props) => {
         <div style={{ marginBottom: '20px' }}>
           <AdaccountSelector />
         </div>
+        {adSet}
         {form}
       </div>
     </AppLayout>

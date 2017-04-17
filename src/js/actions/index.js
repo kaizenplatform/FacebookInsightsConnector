@@ -4,13 +4,17 @@ export const REQUEST_FETCH_ADACCOUNTS = 'REQUEST_FETCH_ADACCOUNTS';
 export const COMPLETE_FETCH_ADACCOUNTS = 'COMPLETE_FETCH_ADACCOUNTS';
 export const FETCH_ADACCOUNTS = 'FETCH_ADACCOUNTS';
 export const SELECT_ADACCOUNT = 'SELECT_ADACCOUNT';
+export const REQUEST_FETCH_ADSETS = 'REQUEST_FETCH_ADSETS';
+export const COMPLETE_FETCH_ADSETS = 'COMPLETE_FETCH_ADSETS';
+export const FETCH_ADSETS = 'FETCH_ADSETS';
+export const SELECT_ADSET = 'SELECT_ADSET';
 export const SET_FB_STATUS = 'SET_FB_STATUS';
 
 export const requestFetchAdaccounts = () => ({ type: REQUEST_FETCH_ADACCOUNTS });
 export const completeFetchAdaccounts = () => ({ type: COMPLETE_FETCH_ADACCOUNTS });
 export const fetchAdaccounts = () => (dispatch) => {
   dispatch(requestFetchAdaccounts());
-  fb.api('v2.8/me/adaccounts', { fields: 'id,name' }, (response) => {
+  fb.api('v2.8/me/adaccounts', { fields: 'id,name', limit: 100 }, (response) => {
     dispatch({
       type: FETCH_ADACCOUNTS,
       payload: response,
@@ -19,8 +23,29 @@ export const fetchAdaccounts = () => (dispatch) => {
   });
 };
 
-export const selectAdaccount = id => ({
-  type: SELECT_ADACCOUNT,
+export const selectAdaccount = (id) => (dispatch) => {
+  dispatch(fetchAdSets(id));
+  dispatch({
+    type: SELECT_ADACCOUNT,
+    payload: { id },
+  });
+};
+
+export const requestFetchAdSets = () => ({ type: REQUEST_FETCH_ADSETS });
+export const completeFetchAdSets = () => ({ type: COMPLETE_FETCH_ADSETS });
+export const fetchAdSets = (account_id) => (dispatch) => {
+  dispatch(requestFetchAdSets());
+  fb.api(`v2.8/${account_id}/adsets`, { fields: 'id,name', limit: 100 }, (response) => {
+    dispatch({
+      type: FETCH_ADSETS,
+      payload: response,
+    });
+    dispatch(completeFetchAdSets());
+  });
+};
+
+export const selectAdSet = id => ({
+  type: SELECT_ADSET,
   payload: { id },
 });
 
