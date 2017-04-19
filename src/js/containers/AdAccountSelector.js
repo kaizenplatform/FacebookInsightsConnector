@@ -9,7 +9,7 @@ class AdAccountSelector extends Component {
   }
 
   render() {
-    const { adaccounts: { all, current, isFetching }, selectAdAccount } = this.props;
+    const { adAccounts: { all, current, isFetching }, selectAdAccount } = this.props;
 
     return (
       <Select
@@ -27,7 +27,7 @@ class AdAccountSelector extends Component {
 
 function mapStateToProps(state) {
   return {
-    adaccounts: state.adaccounts,
+    adAccounts: state.adAccounts,
   };
 }
 
