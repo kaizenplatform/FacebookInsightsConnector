@@ -54,6 +54,7 @@ let SubmitForm = class SubmitForm extends Component {
         fields,
         time_increment: 1,
         breakdowns,
+        action_breakdowns: 'action_video_type',
         time_range: {
           since: dateRange.startDate.format('YYYY-MM-DD'),
           until: dateRange.endDate.format('YYYY-MM-DD'),
