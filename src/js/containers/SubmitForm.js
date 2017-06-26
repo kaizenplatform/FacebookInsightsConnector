@@ -39,7 +39,7 @@ let SubmitForm = class SubmitForm extends Component {
     const all = adSets.all || adAccounts.all;
 
     const connectionData = {
-      path: `v2.8/${current}/insights`,
+      path: `v2.9/${current}/insights`,
       schema: {
         id: `fb_insights_${current}_${level}`,
         alias: `FB Insights: ${all[current].name} (${level})`,
@@ -54,6 +54,7 @@ let SubmitForm = class SubmitForm extends Component {
         fields,
         time_increment: 1,
         breakdowns,
+        action_breakdowns: 'action_video_type',
         time_range: {
           since: dateRange.startDate.format('YYYY-MM-DD'),
           until: dateRange.endDate.format('YYYY-MM-DD'),

@@ -1,7 +1,7 @@
 const getLogInUrl = (appId, scopes) => {
   const currentUrl = window.location.href;
   const uri = encodeURI(
-    'https://www.facebook.com/v2.8/dialog/oauth' +
+    'https://www.facebook.com/v2.9/dialog/oauth' +
       `?client_id=${appId}` +
       `&redirect_uri=${currentUrl}` +
       '&response_type=token' +
@@ -30,7 +30,7 @@ const setup = (appId, cb) => {
       status: true,
       cookie: true,
       xfbml: true,
-      version: 'v2.8',
+      version: 'v2.9',
     });
     cb();
   };
