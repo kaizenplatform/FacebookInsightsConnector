@@ -15,7 +15,7 @@ export const completeFetchAdSets = () => ({ type: COMPLETE_FETCH_ADSETS });
 export const fetchAdSets = (accountId) => {
   return (dispatch) => {
     dispatch(requestFetchAdSets());
-    fb.api(`v2.8/${accountId}/adsets`, { fields: 'id,name', limit: 100 }, (response) => {
+    fb.api(`v2.9/${accountId}/adsets`, { fields: 'id,name', limit: 100 }, (response) => {
       dispatch({
         type: FETCH_ADSETS,
         payload: response,
@@ -34,7 +34,7 @@ export const requestFetchAdAccounts = () => ({ type: REQUEST_FETCH_ADACCOUNTS })
 export const completeFetchAdAccounts = () => ({ type: COMPLETE_FETCH_ADACCOUNTS });
 export const fetchAdAccounts = () => (dispatch) => {
   dispatch(requestFetchAdAccounts());
-  fb.api('v2.8/me/adaccounts', { fields: 'id,name', limit: 100 }, (response) => {
+  fb.api('v2.9/me/adaccounts', { fields: 'id,name', limit: 100 }, (response) => {
     dispatch({
       type: FETCH_ADACCOUNTS,
       payload: response,
@@ -57,7 +57,7 @@ export const setFbStatus = (status) => {
   let request = { status };
   if (status === 'connected') {
     request = (dispatch) => {
-      fb.api('v2.8/me', { fields: 'id,email,name' }, (response) => {
+      fb.api('v2.9/me', { fields: 'id,email,name' }, (response) => {
         const { id, email, name } = response;
         const token = fb.getAccessToken();
         dispatch({
